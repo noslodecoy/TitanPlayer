@@ -2,23 +2,20 @@ package com.player.bll;
 
 import java.util.LinkedList;
 
+public class Playlist extends LinkedList<Song> {
 
-public class Playlist {
-
-  String name;
-  LinkedList<Song> songs;
-
-  public Playlist( String nameOfPlaylist ) {
-    name = nameOfPlaylist;
-    songs = new LinkedList<Song>();
+  private String name;
+  
+  public Playlist( String name ) {
+    super();
+    setName( name );
   }
 
-  public int getSongCount() {
-    return songs.size();
+  public void setName( String newName ) {
+    name = newName;
   }
   
   public String getName() {
     return name;
   }
-
 }

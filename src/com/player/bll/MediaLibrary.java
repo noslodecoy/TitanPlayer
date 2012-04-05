@@ -1,25 +1,28 @@
 package com.player.bll;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Comparator;
+import java.util.TreeSet;
 
-public class MediaLibrary {
+public class MediaLibrary extends TreeSet<Song> {
   
-  List<Song> songs;
-  
-  public MediaLibrary() {
-    songs = new ArrayList<Song>();
+  public  MediaLibrary() {
+    super( Song.CompareByTitle );
   }
 
-  public int songCount() {
-    return songs.size();
+  public  MediaLibrary( Comparator useComparator ) {
+    super( useComparator );
   }
 
-  public void addSong( Song songToAdd ) {
-    songs.add( songToAdd );
+  public MediaLibrary sortByArtist() {
+    MediaLibrary newSet = new MediaLibrary( Song.CompareByArtist );
+    newSet.addAll( this );
+    return newSet;
   }
-  
-  public void removeSong( int songIndexToRemove ) {
-    songs.remove( songs.get( songIndexToRemove ) );
+
+  public MediaLibrary sortByTitle() {
+    MediaLibrary newSet = new MediaLibrary( Song.CompareByTitle );
+    newSet.addAll( this );
+    return newSet;
   }
+
 }
