@@ -30,6 +30,9 @@ public class Song {
     if ( this == songToCompare ) {
       return true;
     }
+    if ( this.isEmpty() && songToCompare.isEmpty() ) {
+      return true;
+    }
     return ( this.getTitle().equals( songToCompare.getTitle() ) && this.getArtist().equals( songToCompare.getArtist() ) );
   }
   

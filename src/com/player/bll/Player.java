@@ -1,19 +1,23 @@
 package com.player.bll;
 
+import java.util.ListIterator;
+
 public class Player {
 
   private Playlist playlist;
-  private int playlistIndex;
+  private ListIterator playlistIterator;
+  private Song currentSong;
   private boolean isPlaying;
 
   public Player( Playlist playlistToUse ) {
     playlist = playlistToUse;
-    playlistIndex = 0;
+    playlistIterator = playlist.iterator();
     isPlaying = false;
+    currentSong = (Song)playlistIterator.next();
   }
 
   public Song getCurrentSong() {
-    return playlist.get( playlistIndex );
+    return currentSong;
   }
   
   public void play() {
@@ -29,9 +33,17 @@ public class Player {
   }
   
   public void skipForward() {
-    playlistIndex = ( playlistIndex + 1 < playlist.size() ) ? playlistIndex + 1 : 0;
+    if ( playlistIterator.hasNext() ) {
+      currentSong = (Song)playlistIterator.next();
+    }
   }
-  
+
+  public void skipBackward() {
+    if ( playlistIterator.hasPrevious() ) {
+      currentSong = (Song)playlistIterator.previous();
+    }
+  }
+
   public Playlist getPlaylist() {
     return playlist;
   }
