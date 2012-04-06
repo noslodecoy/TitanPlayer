@@ -6,7 +6,7 @@ public class Playlist {
 
   private String name;
   private List<Song> playlist;
-  
+
   public Playlist( String nameToUse ) {
     name = nameToUse;
     playlist = new LinkedList();
@@ -35,7 +35,11 @@ public class Playlist {
   public List<Song> get() {
     return Collections.unmodifiableList( playlist );
   }
-    
+
+  public Song get( int index ) {
+    return playlist.get( index );
+  }
+
   public void remove( Song songToRemove ) {
     playlist.remove( songToRemove );
   }
@@ -48,7 +52,4 @@ public class Playlist {
     return playlist.contains( songToFind );
   }
 
-  public ListIterator iterator() {
-    return playlist.listIterator();
-  }
 }

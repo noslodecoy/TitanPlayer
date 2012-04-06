@@ -9,7 +9,7 @@ import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class songTest {
+public class SongTest {
   
   Song song1;
   Song song2;
@@ -42,16 +42,14 @@ public class songTest {
 
   @Test
   public void songEqualsTest() {
-    Song testSong = song1;
+    Song testSong = new Song( song1.getTitle(), song1.getArtist() );
     assertTrue( testSong.equals( song1 ) );
   }
 
-  
-  
   @Test
-  public void getEmptySongTest() {
-    Song song = new Song();
-    assertTrue( song.isEmpty() );
+  public void songNotEqualsTest() {
+    Song testSong = new Song( "Not a real title", "Not a real artist" );
+    assertFalse( testSong.equals( song1 ) );
   }
   
   @Test

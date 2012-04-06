@@ -58,6 +58,14 @@ public class PlaylistTest {
   }
 
   @Test
+  public void addSongToMiddleTest() {
+    Song testSong = new Song( "TestTitle4", "Test Artist4" );
+    playlist.add( 3, testSong );
+    assertEquals( testSong, playlist.get(3) );
+  }
+
+  
+  @Test
   public void playlistContainsTest() {
     assertTrue( playlist.contains( songs.get(0) ) );
   }
@@ -82,11 +90,11 @@ public class PlaylistTest {
     playlist.remove( songs.get(1) );
     assertFalse( playlist.contains( songs.get(1) ) );
   }
-    
+  
   @Test
-  public void playlistIteratorTest() {
-    ListIterator playlistIterator = playlist.iterator();
-    assertTrue( playlistIterator.hasNext() );
+  public void getSongByIndexTest() {
+    Song testSong = playlist.get(1);
+    assertEquals( songs.get(1), testSong );
   }
-
+  
 }

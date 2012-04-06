@@ -5,19 +5,18 @@ import java.util.ListIterator;
 public class Player {
 
   private Playlist playlist;
-  private ListIterator playlistIterator;
+  private int playlistIndex;
   private Song currentSong;
   private boolean isPlaying;
 
   public Player( Playlist playlistToUse ) {
     playlist = playlistToUse;
-    playlistIterator = playlist.iterator();
+    playlistIndex = 0;
     isPlaying = false;
-    currentSong = (Song)playlistIterator.next();
   }
 
   public Song getCurrentSong() {
-    return currentSong;
+    return playlist.get( playlistIndex );
   }
   
   public void play() {
@@ -33,14 +32,14 @@ public class Player {
   }
   
   public void skipForward() {
-    if ( playlistIterator.hasNext() ) {
-      currentSong = (Song)playlistIterator.next();
+    if ( ( playlistIndex + 1 ) < playlist.size() ) {
+      ++playlistIndex;
     }
   }
 
   public void skipBackward() {
-    if ( playlistIterator.hasPrevious() ) {
-      currentSong = (Song)playlistIterator.previous();
+    if ( ( playlistIndex - 1 ) >= 0 ) {
+      --playlistIndex;
     }
   }
 

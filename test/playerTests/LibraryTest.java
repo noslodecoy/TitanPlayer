@@ -79,7 +79,13 @@ public class LibraryTest {
     library.remove( songs.get(1) );
     assertFalse( library.contains( songs.get(1) ) );
   }
-  
+
+  @Test
+  public void libraryIteratorTest() {
+    Iterator libraryIterator = library.iterator();
+    assertTrue( libraryIterator.hasNext() );
+  }
+ 
   @Test
   public void sortedByTitleTest() {
     library = new Library();
@@ -90,7 +96,7 @@ public class LibraryTest {
     library.add( song3 );
     library.add( song1 );
     library.sortByTitle();
-    Iterator iterator = library.get().iterator();
+    Iterator iterator = library.iterator();
     assertEquals( song1, iterator.next() );
     assertEquals( song2, iterator.next() );
     assertEquals( song3, iterator.next() );
@@ -106,16 +112,27 @@ public class LibraryTest {
     library.add( song3 );
     library.add( song1 );
     library.sortByArtist();
-    Iterator iterator = library.get().iterator();
+    Iterator iterator = library.iterator();
     assertEquals( song1, iterator.next() );
     assertEquals( song2, iterator.next() );
     assertEquals( song3, iterator.next() );
   }
-
+  
   @Test
-  public void libraryIteratorTest() {
-    Iterator libraryIterator = library.iterator();
-    assertTrue( libraryIterator.hasNext() );
+  public void duplicateSongsTest() {
+    library = new Library();
+    Song song1 = new Song( "This is a duplicate title", "this is a duplicate artist" );
+    Song song2 = new Song( "This is a duplicate title", "this is a duplicate artist" );
+    Song song3 = new Song( "This is a duplicate title", "this is a duplicate artist" );
+    Song song4 = new Song( "This is a duplicate title", "this is a duplicate artist" );
+    Song song5 = new Song( "This is a duplicate title", "this is a duplicate artist" );
+    library.add( song1 );
+    library.add( song2 );
+    library.add( song3 );
+    library.add( song4 );
+    library.add( song5 );
+    assertEquals( 1, library.size() );
   }
+
 
 }
